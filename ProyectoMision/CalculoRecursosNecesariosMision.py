@@ -1,6 +1,6 @@
 #====================================================================================
 
-# Archivo: ejercicio1.py
+# Archivo: CalculoRecursosNecesariosMisión.py
 # Curso: SOFT-01 Principios de Programación 1 - Sección SCP0
 # Integrantes: Gerald Alexander Peñaranda Pereira.
 # Fecha: 06/09/2026 Versión: 1.0
@@ -8,8 +8,8 @@
 
 #====================================================================================
 
-#Constantes del programa
-#Las constantes son los datos que no cambian y que el programa utiliza, para poder realizar los cálculos necesarios para la misión.
+# Constantes del programa
+# Las constantes son los datos que no cambian y que el programa utiliza, para poder realizar los cálculos necesarios para la misión.
 
 COMBUSTIBLE_REQUERIDO_DIARIO = 8
 COMBUSTIBLE_RESERVA = 10
@@ -22,7 +22,7 @@ TRAMOS_VIAJES = 2
 
 # Datos de entrada
 # Los datos de entrada son los datos que ingresa el usuario, para que el programa reconozca sus necesidades, pueda leerlos,
-# y realizar los cálculos correspondientes. 
+# realizar los cálculos correspondientes. 
 
 nombre_mision = input("Ingresar el nombre asignado a la misión: ")
 cantidad_tripulantes = int(input("Ingresar la cantidad de tripulantes que van a la misión: "))
