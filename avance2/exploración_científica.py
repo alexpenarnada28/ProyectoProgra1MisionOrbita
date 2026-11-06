@@ -52,9 +52,9 @@ while menu_activo:
     print("3. Realizar observación")
     print("4. Finalizar exploración")
 
-    opcion = int(input("Seleccione una actividad: "))
+    opcion = input("Seleccione una actividad: ")
 
-    if opcion == 1:
+    if opcion == "1":
           
         if (energia_disponible_destino >= ANALIZAR_TERRENO_ENERGIA) and (provisiones_disponibles_destino >= ANALIZAR_TERRENO_PROVISIONES):
             energia_disponible_destino = (energia_disponible_destino) - (ANALIZAR_TERRENO_ENERGIA)
@@ -68,7 +68,7 @@ while menu_activo:
             menu_activo = False
             print ("Recursos insuficientes para realizar la actividad. La exploración finaliza.")
     
-    elif opcion == 2:
+    elif opcion == "2":
         
         if (energia_disponible_destino >= RECOLECTAR_MUESTRA_ENERGIA) and (provisiones_disponibles_destino >= RECOLECTAR_MUESTRA_PROVISIONES):
             energia_disponible_destino = (energia_disponible_destino) - (RECOLECTAR_MUESTRA_ENERGIA)
@@ -84,7 +84,7 @@ while menu_activo:
             print ("Recursos insuficientes para realizar la actividad. La exploración finaliza.")
 
 
-    elif opcion == 3:
+    elif opcion == "3":
         
         if (energia_disponible_destino >= REALIZAR_OBSERVACION_ENERGIA) and (provisiones_disponibles_destino >= REALIZAR_OBSERVACION_PROVISIONES):
             
@@ -101,7 +101,7 @@ while menu_activo:
             print ("Recursos insuficientes para realizar la actividad. La exploración finaliza.")
 
 
-    elif opcion == 4:
+    elif opcion == "4":
         print("Exploración finalizada por la tripulación.")
         menu_activo = False
         
