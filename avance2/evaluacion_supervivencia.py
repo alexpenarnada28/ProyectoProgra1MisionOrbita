@@ -1,20 +1,20 @@
 
 #Caso A #1:
-cantidad_de_tripulantes = 2
-cantidad_dias_ida = 3
-combustible_disponible = 30
-oxígeno_disponible = 20
-energia_disponible = 20
-provisiones_disponibles = 10
+#cantidad_de_tripulantes = 2
+# cantidad_dias_ida = 3
+# combustible_disponible = 30
+# oxígeno_disponible = 20
+# energia_disponible = 20
+# provisiones_disponibles = 10
 
 #Caso A #2:
 
-# cantidad_de_tripulantes = 2
-# cantidad_dias_ida = 3
-# combustible_disponible = 30
-# oxígeno_disponible = 10
-# energia_disponible = 20
-# provisiones_disponibles = 10
+cantidad_de_tripulantes = 2
+cantidad_dias_ida = 3
+combustible_disponible = 30
+oxígeno_disponible = 10
+energia_disponible = 20
+provisiones_disponibles = 10
 
 
 #Caso B:
@@ -34,15 +34,29 @@ PROVISIONES_CONSUMO_DIARIO = 1
 switchCaso = (combustible_disponible >= ( cantidad_dias_ida * COMBUSTIBLE_CONSUMO_DIARIO) )
 
 if switchCaso:
-    print("Caso A")
+   
     dia_actual = 1
-    interrumpir = True
 
-    while(dia_actual <= cantidad_dias_ida and interrumpir ):
+    # Esta variable es una bandera que interrumpe el ciclo cuando alguno de los suministeros es menor qur 0 
+    bandera_interrumpir = True
+
+    while(dia_actual <= cantidad_dias_ida and bandera_interrumpir ):
 
         if ( 0 >=  combustible_disponible - COMBUSTIBLE_CONSUMO_DIARIO ) or  (0 >= oxígeno_disponible - ( OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes)) or (0 >= energia_disponible - ENERGIA_CONSUMO_DIARIO) or ( 0 >= provisiones_disponibles -  (PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes)):
-            print("Fallo en el dia: ", dia_actual)
-            interrumpir = False
+            print("El regreso se interrumpió en el día", dia_actual)
+
+            if (0 >=  combustible_disponible - COMBUSTIBLE_CONSUMO_DIARIO ):
+                print("Recurso insuficiente: Combustible")
+            if (0 >= oxígeno_disponible - ( OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes)):
+                print("Recurso insuficiente: Oxígeno")
+            if (0 >= energia_disponible - ENERGIA_CONSUMO_DIARIO):
+                print("Recurso insuficiente: Energía")
+            if ( 0 >= provisiones_disponibles -  (PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes)):
+                print("Recurso insuficiente: Provisiones")
+
+            print("La tripulación no completó el regreso.")
+            bandera_interrumpir = False
+        
         else:
             combustible_disponible = combustible_disponible - COMBUSTIBLE_CONSUMO_DIARIO
             oxígeno_disponible = oxígeno_disponible - ( OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes)
@@ -51,18 +65,36 @@ if switchCaso:
 
             print( f"Día {dia_actual} | Combustible: {combustible_disponible} |Oxígeno {oxígeno_disponible} | Energía {energia_disponible} |  Provisiones {provisiones_disponibles}" )
             dia_actual = dia_actual + 1
-            
 
-    if interrumpir:
+
+    if bandera_interrumpir:
         print("La tripulación regresó exitosamente a la Tierra.")  
         print(f"Combustibe restante: {combustible_disponible} unidades.")
         print(f"Oxígeno restante: {oxígeno_disponible} unidades.")
         print(f"Energía restante: {energia_disponible} unidades.")
         print(f"Provisiones restante: {provisiones_disponibles} unidades")
-    else: 
-        print("El regreso se interrumpió en el día: ", dia_actual)
+
 
    
     
-else:
-    print("Caso B")
+else: 
+    
+
+    dias_oxigeno = oxígeno_disponible // (cantidad_de_tripulantes * 2)
+    dias_energia = energia_disponible // 5
+    dias_provisiones = provisiones_disponibles // cantidad_de_tripulantes
+
+    if dias_energia < dias_oxigeno and dias_energia < dias_provisiones:
+        pri
+    
+    print("Días por oxígeno:", dias_oxigeno)
+    print("Días por energía:",dias_energia)
+    print("Días por provisiones:",dias_provisiones)
+    print("Supervivencia estimada: días")
+    print("Recurso(s) limitante(s): ")
+
+
+
+     
+    
+  
