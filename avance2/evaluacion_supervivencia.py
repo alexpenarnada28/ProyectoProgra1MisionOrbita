@@ -1,11 +1,11 @@
 
 #Caso A #1:
-cantidad_de_tripulantes = 2
-cantidad_dias_ida = 3
-combustible_disponible = 30
-oxígeno_disponible = 20
-energia_disponible = 20
-provisiones_disponibles = 10
+# cantidad_de_tripulantes = 2
+# cantidad_dias_ida = 3
+# combustible_disponible = 30
+# oxígeno_disponible = 20
+# energia_disponible = 20
+# provisiones_disponibles = 10
 
 #Caso A #2:
 
@@ -18,12 +18,12 @@ provisiones_disponibles = 10
 
 
 #Caso B:
-# cantidad_de_tripulantes = 2
-# cantidad_dias_ida = 5
-# combustible_disponible = 10
-# oxígeno_disponible = 20
-# energia_disponible = 25
-# provisiones_disponibles = 12
+cantidad_de_tripulantes = 2
+cantidad_dias_ida = 5
+combustible_disponible = 10
+oxígeno_disponible = 20
+energia_disponible = 25
+provisiones_disponibles = 12
 
 # Constantes 
 COMBUSTIBLE_CONSUMO_DIARIO = 8
@@ -112,7 +112,30 @@ else:
         menor = dias_provisiones
 
     print("Supervivencia estimada:", menor)
-    print("Recurso(s) limitante(s): ")
+
+    recursos_limitantes = ""
+
+    if dias_oxigeno == menor:
+
+        #Agregar el oxigeno como recurso limitante.
+        recursos_limitantes = "oxígeno"
+
+    if dias_energia == menor:
+        #Hacer que aparezca la coma bonito. 
+        if recursos_limitantes != "":
+            recursos_limitantes = recursos_limitantes + ", "
+
+        #Agregar la energia como recurso limitante.
+        recursos_limitantes = recursos_limitantes + "energía"
+
+    if dias_provisiones == menor:
+        #Hacer que aparezca la coma bonito. 
+        if recursos_limitantes != "":
+            recursos_limitantes = recursos_limitantes + ", "
+        #Agregar las provisiones como recurso limitante.
+        recursos_limitantes = recursos_limitantes + "provisiones"
+
+    print("Recurso(s) limitante(s):", recursos_limitantes)
 
 
 
