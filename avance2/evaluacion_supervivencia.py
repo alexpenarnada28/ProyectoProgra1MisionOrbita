@@ -103,8 +103,15 @@ else:
     print("Días por energía:",dias_energia)
     print("Días por provisiones:",dias_provisiones)
 
+    menor = 0
+    if dias_oxigeno <= dias_energia and dias_oxigeno <= dias_provisiones:
+        menor = dias_oxigeno
+    elif dias_energia <= dias_oxigeno and dias_energia <= dias_provisiones:
+        menor = dias_energia
+    else:
+        menor = dias_provisiones
 
-    print("Supervivencia estimada:")
+    print("Supervivencia estimada:", menor)
     print("Recurso(s) limitante(s): ")
 
 
