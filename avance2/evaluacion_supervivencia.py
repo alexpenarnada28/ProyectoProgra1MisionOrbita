@@ -9,27 +9,29 @@
 
 #Caso A #2:
 
-cantidad_de_tripulantes = 2
-cantidad_dias_ida = 3
-combustible_disponible = 30
-oxígeno_disponible = 10
-energia_disponible = 20
-provisiones_disponibles = 10
+# cantidad_de_tripulantes = 2
+# cantidad_dias_ida = 3
+# combustible_disponible = 30
+# oxígeno_disponible = 10
+# energia_disponible = 20
+# provisiones_disponibles = 10
 
 
 #Caso B:
-# cantidad_de_tripulantes = 2
-# cantidad_dias_ida = 5
-# combustible_disponible = 10
-# oxígeno_disponible = 20
-# energia_disponible = 25
-# provisiones_disponibles = 12
+cantidad_de_tripulantes = 2
+cantidad_dias_ida = 5
+combustible_disponible = 10
+oxígeno_disponible = 20
+energia_disponible = 25
+provisiones_disponibles = 12
 
 # Constantes 
 COMBUSTIBLE_CONSUMO_DIARIO = 8
 OXIGENO_CONSUMO_DIARIO = 2
 ENERGIA_CONSUMO_DIARIO = 5
 PROVISIONES_CONSUMO_DIARIO = 1
+
+
 
 switchCaso = (combustible_disponible >= ( cantidad_dias_ida * COMBUSTIBLE_CONSUMO_DIARIO) )
 
@@ -78,19 +80,31 @@ if switchCaso:
    
     
 else: 
+    print("La tripulación quedó varada en el destino.")
     
-
     dias_oxigeno = oxígeno_disponible // (cantidad_de_tripulantes * 2)
     dias_energia = energia_disponible // 5
     dias_provisiones = provisiones_disponibles // cantidad_de_tripulantes
 
-    if dias_energia < dias_oxigeno and dias_energia < dias_provisiones:
-        pri
+    if (dias_oxigeno <= dias_energia and dias_oxigeno <= dias_provisiones):
+        supervivencia_estimada = dias_oxigeno
+     
+    elif ( dias_energia <= dias_oxigeno and dias_energia <= dias_provisiones):
+        supervivencia_estimada = dias_energia
+        
+    elif (dias_provisiones <= dias_oxigeno and dias_provisiones <= dias_energia):
+        supervivencia_estimada = dias_provisiones
+   
+
+
     
+   
     print("Días por oxígeno:", dias_oxigeno)
     print("Días por energía:",dias_energia)
     print("Días por provisiones:",dias_provisiones)
-    print("Supervivencia estimada: días")
+
+
+    print("Supervivencia estimada:")
     print("Recurso(s) limitante(s): ")
 
 
