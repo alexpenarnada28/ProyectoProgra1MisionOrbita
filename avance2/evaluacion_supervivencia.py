@@ -1,11 +1,11 @@
 
 #Caso A #1:
-#cantidad_de_tripulantes = 2
-# cantidad_dias_ida = 3
-# combustible_disponible = 30
-# oxígeno_disponible = 20
-# energia_disponible = 20
-# provisiones_disponibles = 10
+cantidad_de_tripulantes = 2
+cantidad_dias_ida = 3
+combustible_disponible = 30
+oxígeno_disponible = 20
+energia_disponible = 20
+provisiones_disponibles = 10
 
 #Caso A #2:
 
@@ -18,12 +18,12 @@
 
 
 #Caso B:
-cantidad_de_tripulantes = 2
-cantidad_dias_ida = 5
-combustible_disponible = 10
-oxígeno_disponible = 20
-energia_disponible = 25
-provisiones_disponibles = 12
+# cantidad_de_tripulantes = 2
+# cantidad_dias_ida = 5
+# combustible_disponible = 10
+# oxígeno_disponible = 20
+# energia_disponible = 25
+# provisiones_disponibles = 12
 
 # Constantes 
 COMBUSTIBLE_CONSUMO_DIARIO = 8
@@ -44,16 +44,16 @@ if switchCaso:
 
     while(dia_actual <= cantidad_dias_ida and bandera_interrumpir ):
 
-        if ( 0 >=  combustible_disponible - COMBUSTIBLE_CONSUMO_DIARIO ) or  (0 >= oxígeno_disponible - ( OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes)) or (0 >= energia_disponible - ENERGIA_CONSUMO_DIARIO) or ( 0 >= provisiones_disponibles -  (PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes)):
+        if (combustible_disponible < COMBUSTIBLE_CONSUMO_DIARIO) or  (oxígeno_disponible < OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes) or (energia_disponible < ENERGIA_CONSUMO_DIARIO) or (provisiones_disponibles < PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes):
             print("El regreso se interrumpió en el día", dia_actual)
 
-            if (0 >=  combustible_disponible - COMBUSTIBLE_CONSUMO_DIARIO ):
+            if combustible_disponible < COMBUSTIBLE_CONSUMO_DIARIO:
                 print("Recurso insuficiente: Combustible")
-            if (0 >= oxígeno_disponible - ( OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes)):
+            if oxígeno_disponible < OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes:
                 print("Recurso insuficiente: Oxígeno")
-            if (0 >= energia_disponible - ENERGIA_CONSUMO_DIARIO):
+            if energia_disponible < ENERGIA_CONSUMO_DIARIO:
                 print("Recurso insuficiente: Energía")
-            if ( 0 >= provisiones_disponibles -  (PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes)):
+            if provisiones_disponibles < PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes:
                 print("Recurso insuficiente: Provisiones")
 
             print("La tripulación no completó el regreso.")
