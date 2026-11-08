@@ -1,4 +1,12 @@
+# ============================================================
+# Archivo: evaluacion_supervivencia.py
+# Curso: SOFT-01 Principios de Programación 1 - Sección SCV3 / SCV6
+# Integrante: Gerald Alexander Peñaranda Pereira
+# Fecha: 07/11/2026        Versión: 1.0
+# Descripción: Evalúa el regreso de la tripulación y su supervivencia.
+# ============================================================
 
+# Entrada de datos: estado de la nave al finalizar la exploración.
 cantidad_de_tripulantes = int(input("Ingresar la cantidad de tripulantes: "))
 cantidad_dias_ida = int(input("Ingresar la cantidad de días del viaje de ida: "))
 combustible_disponible = int(input("Ingresar el combustible disponible: "))
@@ -6,7 +14,7 @@ oxígeno_disponible = int(input("Ingresar el oxígeno disponible: "))
 energia_disponible = int(input("Ingresar la energía disponible: "))
 provisiones_disponibles = int(input("Ingresar las provisiones disponibles: "))
 
-# Constantes 
+# Constantes de consumo diario.
 COMBUSTIBLE_CONSUMO_DIARIO = 8
 OXIGENO_CONSUMO_DIARIO = 2
 ENERGIA_CONSUMO_DIARIO = 5
@@ -14,10 +22,11 @@ PROVISIONES_CONSUMO_DIARIO = 1
 
 
 
+# Decisión: se determina si existe combustible suficiente para iniciar el regreso.
 switchCaso = (combustible_disponible >= ( cantidad_dias_ida * COMBUSTIBLE_CONSUMO_DIARIO) )
 
 if switchCaso:
-   
+    # Caso A: simulación diaria del regreso.
     dia_actual = 1
 
     # Esta variable es una bandera que interrumpe el ciclo cuando alguno de los suministeros es menor qur 0 
@@ -26,7 +35,7 @@ if switchCaso:
     while(dia_actual <= cantidad_dias_ida and bandera_interrumpir ):
 
         if (combustible_disponible < COMBUSTIBLE_CONSUMO_DIARIO) or  (oxígeno_disponible < OXIGENO_CONSUMO_DIARIO * cantidad_de_tripulantes) or (energia_disponible < ENERGIA_CONSUMO_DIARIO) or (provisiones_disponibles < PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes):
-            print("El regreso se interrumpió en el día", dia_actual)
+            print(f"El regreso se interrumpió en el día {dia_actual}.")
 
             if combustible_disponible < COMBUSTIBLE_CONSUMO_DIARIO:
                 print("Recurso insuficiente: Combustible")
@@ -46,25 +55,26 @@ if switchCaso:
             energia_disponible = energia_disponible - ENERGIA_CONSUMO_DIARIO
             provisiones_disponibles = provisiones_disponibles -  (PROVISIONES_CONSUMO_DIARIO * cantidad_de_tripulantes)
 
-            print( f"Día {dia_actual} | Combustible: {combustible_disponible} |Oxígeno {oxígeno_disponible} | Energía {energia_disponible} |  Provisiones {provisiones_disponibles}" )
+            print( f"Día {dia_actual} | Combustible: {combustible_disponible} | Oxígeno: {oxígeno_disponible} | Energía: {energia_disponible} | Provisiones: {provisiones_disponibles}" )
             dia_actual = dia_actual + 1
 
 
     if bandera_interrumpir:
         print("La tripulación regresó exitosamente a la Tierra.")  
-        print(f"Combustibe restante: {combustible_disponible} unidades.")
-        print(f"Oxígeno restante: {oxígeno_disponible} unidades.")
-        print(f"Energía restante: {energia_disponible} unidades.")
-        print(f"Provisiones restante: {provisiones_disponibles} unidades")
+        print(f"Combustible restante: {combustible_disponible} unidades")
+        print(f"Oxígeno restante: {oxígeno_disponible} unidades")
+        print(f"Energía restante: {energia_disponible} unidades")
+        print(f"Provisiones restantes: {provisiones_disponibles} unidades")
 
 
    
     
-else: 
+# Caso B: cálculo de supervivencia cuando la tripulación queda varada.
+else:
     print("La tripulación quedó varada en el destino.")
     
-    dias_oxigeno = oxígeno_disponible // (cantidad_de_tripulantes * 2)
-    dias_energia = energia_disponible // 5
+    dias_oxigeno = oxígeno_disponible // (cantidad_de_tripulantes * OXIGENO_CONSUMO_DIARIO)
+    dias_energia = energia_disponible // ENERGIA_CONSUMO_DIARIO
     dias_provisiones = provisiones_disponibles // cantidad_de_tripulantes
 
     if (dias_oxigeno <= dias_energia and dias_oxigeno <= dias_provisiones):
