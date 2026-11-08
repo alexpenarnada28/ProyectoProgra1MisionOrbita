@@ -1,29 +1,10 @@
 
-#Caso A #1:
-# cantidad_de_tripulantes = 2
-# cantidad_dias_ida = 3
-# combustible_disponible = 30
-# oxígeno_disponible = 20
-# energia_disponible = 20
-# provisiones_disponibles = 10
-
-#Caso A #2:
-
-# cantidad_de_tripulantes = 2
-# cantidad_dias_ida = 3
-# combustible_disponible = 30
-# oxígeno_disponible = 10
-# energia_disponible = 20
-# provisiones_disponibles = 10
-
-
-#Caso B:
-cantidad_de_tripulantes = 2
-cantidad_dias_ida = 5
-combustible_disponible = 10
-oxígeno_disponible = 20
-energia_disponible = 25
-provisiones_disponibles = 12
+cantidad_de_tripulantes = int(input("Ingresar la cantidad de tripulantes: "))
+cantidad_dias_ida = int(input("Ingresar la cantidad de días del viaje de ida: "))
+combustible_disponible = int(input("Ingresar el combustible disponible: "))
+oxígeno_disponible = int(input("Ingresar el oxígeno disponible: "))
+energia_disponible = int(input("Ingresar la energía disponible: "))
+provisiones_disponibles = int(input("Ingresar las provisiones disponibles: "))
 
 # Constantes 
 COMBUSTIBLE_CONSUMO_DIARIO = 8
@@ -111,7 +92,7 @@ else:
     else:
         menor = dias_provisiones
 
-    print("Supervivencia estimada:", menor)
+    print("Supervivencia estimada:", menor, "días")
 
     recursos_limitantes = ""
 
