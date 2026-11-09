@@ -1,9 +1,9 @@
 #====================================================================================
 
 # Archivo: ejercicio7_exploracion.py
-# Curso: SOFT-01 Principios de Programación 1 - Sección SCP0
+# Curso: SOFT-01 Principios de Programación 1 - Sección SCV3 / SCV6
 # Integrante: Gerald Alexander Peñaranda Pereira
-# Fecha: 30/11/2026
+# Fecha: 03/11/2026
 # Versión: 1.0
 # Descripción: Simula las actividades de exploración científica de la nave.
 
@@ -62,7 +62,7 @@ while menu_activo:
             actividades_realizadas = actividades_realizadas + 1
             puntos_cientificos = puntos_cientificos + PUNTOS_ANALIZAR_TERRENO
 
-            print("Actividad realizada: Analizar terreno. Puntos obtenidos: 10")
+            print("\nActividad realizada: Analizar terreno. Puntos obtenidos: 10\n")
             
         else:
             menu_activo = False
@@ -77,7 +77,7 @@ while menu_activo:
             puntos_cientificos = puntos_cientificos + PUNTOS_RECOLECTAR_MUESTRA
             muestras_recolectadas = muestras_recolectadas + 1
 
-            print("Actividad realizada: Recolectar muestra. Puntos obtenidos: 20")
+            print("\nActividad realizada: Recolectar muestra. Puntos obtenidos: 20\n")
             
         else:
             menu_activo = False
@@ -94,11 +94,12 @@ while menu_activo:
             puntos_cientificos = puntos_cientificos + PUNTOS_REALIZAR_OBSERVACION
             
 
-            print("Actividad realizada: Realizar observación. Puntos obtenidos: 8")
+            print("\nActividad realizada: Realizar observación. Puntos obtenidos: 8\n")
             
         else:
             menu_activo = False
             print ("Recursos insuficientes para realizar la actividad. La exploración finaliza.")
+            
 
 
     elif opcion == "4":
@@ -110,9 +111,10 @@ while menu_activo:
 
 #Finalizar exploración, se desactiva el menú y se muestra el resumen final.
 
-print("Actividades realizadas: ",actividades_realizadas)
-print("Muestras recolectadas: ",muestras_recolectadas)
-print("Puntos científicos: ",puntos_cientificos)
+print("\n--- Resumen final ---")
+print(f"Actividades realizadas: {actividades_realizadas}")
+print(f"Muestras recolectadas: {muestras_recolectadas}")
+print(f"Puntos científicos: {puntos_cientificos}")
 print(f"Energía restante: {energia_disponible_destino} unidades")
 print(f"Provisiones restantes: {provisiones_disponibles_destino} unidades")
 
