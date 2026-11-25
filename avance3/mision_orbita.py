@@ -23,7 +23,7 @@ def ejecutar_mision(numero):
     cantidad_tripulantes = int(input("Cantidad de tripulantes: "))
 
     mostrar_destinos()
-    opcion_destino = int(input("Seleccione un destino: ")) - 1
+    opcion_destino = int(input("Seleccione un destino: "))
 
     if opcion_destino < 1 or opcion_destino > len(DESTINOS):
         print("Opción de destino no válida. La misión no puede planificarse.")
@@ -34,7 +34,13 @@ def ejecutar_mision(numero):
         disponibles = leer_recursos()
         requeridos = calcular_requeridos(dias_viaje, cantidad_tripulantes)
 
-     
+        mostrar_resumen (nombre_mision,nombre_destino,dias_viaje,cantidad_tripulantes,disponibles,requeridos)
+        lanzamiento_autorizado = autorizar_lanzamiento(disponibles, requeridos)
+        if lanzamiento_autorizado:
+            print("Lanzamiento autorizado.")
+        else:
+            print("Lanzamiento no autorizado. La misión debe ser revisada.")
+ # i indice     
 
 def mostrar_destinos():
 
@@ -89,6 +95,14 @@ def mostrar_resumen(nombre_mision,nombre_destino,dias_viaje,tripulantes,disponib
     if margen_combustible < 10:
      print("Advertencia: el margen de combustible es menor que 10.")
 
-# def autorizar_lanzamiento()
+def autorizar_lanzamiento(disponible,requerido):
 
-#     autorizar_lanzamiento = True
+    autorizar_lanzamiento = True
+
+    for i in range(len(disponible)):
+        if disponible[i] < requerido[i]:
+            autorizar_lanzamiento = False
+
+    return autorizar_lanzamiento  
+
+
