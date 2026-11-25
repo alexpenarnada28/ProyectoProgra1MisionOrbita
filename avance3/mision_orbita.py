@@ -61,10 +61,6 @@ def leer_recursos():
 
     return disponibles
     
-ejecutar_mision(1)
-
-
-
 def calcular_requeridos(dias_viaje, tripulantes):
 
     combustible_ida = dias_viaje * COMBUSTIBLE_REQUERIDO_DIARIO
@@ -106,3 +102,7 @@ def autorizar_lanzamiento(disponible,requerido):
     return autorizar_lanzamiento  
 
 
+def simular_trayecto(dias_viaje, tripulantes, recursos):
+    print("=== VIAJE DE IDA ===")
+
+    
