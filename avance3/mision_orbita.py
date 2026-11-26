@@ -4,12 +4,16 @@ COMBUSTIBLE_RESERVA = 10
 OXIGENO_RESERVA = 5
 OXIGENO_REQUERIDO_DIARIO = 2
 ENERGIA_REQUERIDA_DIARIA = 5
+PROVISIONES_CONSUMO_DIARIO = 1
 ENERGIA_RESERVA = 10
 PROVISIONES_RESERVA = 3
 TRAMOS_VIAJES = 2
 DESTINOS = (("Luna", 3), ("Marte", 5), ("Europa", 7))
 RECURSOS = ("combustible", "oxígeno", "energía", "provisiones")
 COMBUSTIBLE = 0
+OXIGENO = 1
+ENERGIA = 2
+PROVISIONES = 3
 LIMITE_ADVERTENCIA = 10
 
 
@@ -33,11 +37,16 @@ def ejecutar_mision(numero):
         dias_viaje = destino[1]
         disponibles = leer_recursos()
         requeridos = calcular_requeridos(dias_viaje, cantidad_tripulantes)
+        
 
         mostrar_resumen (nombre_mision,nombre_destino,dias_viaje,cantidad_tripulantes,disponibles,requeridos)
         lanzamiento_autorizado = autorizar_lanzamiento(disponibles, requeridos)
         if lanzamiento_autorizado:
             print("Lanzamiento autorizado.")
+            print("=== VIAJE DE IDA ===")
+            disponibles = viajar_al_destino(disponibles, dias_viaje, cantidad_tripulantes)
+            mostrar_recursos(disponibles)
+
         else:
             print("Lanzamiento no autorizado. La misión debe ser revisada.")
  # i indice     
@@ -78,7 +87,7 @@ def calcular_requeridos(dias_viaje, tripulantes):
 
 def mostrar_resumen(nombre_mision,nombre_destino,dias_viaje,tripulantes,disponibles,requeridos):
     
-    print(f"Mison: {nombre_mision} ")
+    print(f"Misión: {nombre_mision} ")
     print(f"Destino: {nombre_destino} ")
     print(f"Duración del viaje de ida: {dias_viaje} días ")
     print(f"Tripulantes: {tripulantes} ")
@@ -102,7 +111,27 @@ def autorizar_lanzamiento(disponible,requerido):
     return autorizar_lanzamiento  
 
 
-def simular_trayecto(dias_viaje, tripulantes, recursos):
-    print("=== VIAJE DE IDA ===")
+def calcular_consumo_diario(tripulantes):
+
+    consumo = [COMBUSTIBLE_REQUERIDO_DIARIO,OXIGENO_REQUERIDO_DIARIO * tripulantes,ENERGIA_REQUERIDA_DIARIA,PROVISIONES_CONSUMO_DIARIO * tripulantes ]   
+    return consumo 
+
+def viajar_al_destino(recursos, dias_viaje, tripulantes):
+    consumo = calcular_consumo_diario(tripulantes)
+    for i in range (len(RECURSOS)):
+        recursos [i] = recursos [i] - consumo [i] * dias_viaje
+    return recursos
+
+def mostrar_recursos(recursos):
+    print("Recursos restantes:")
+    for i in range (len(RECURSOS)):
+        nombre_recursos  = RECURSOS[i].capitalize()
+        print(f" {nombre_recursos}: {recursos[i]}")
+
+
+# def simular_trayecto(dias_viaje, tripulantes, recursos):
+    
+   
+ejecutar_mision(1) 
 
     
