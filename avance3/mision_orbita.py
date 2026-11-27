@@ -15,6 +15,13 @@ OXIGENO = 1
 ENERGIA = 2
 PROVISIONES = 3
 LIMITE_ADVERTENCIA = 10
+ANALIZAR_TERRENO_ENERGIA = 8
+RECOLECTAR_MUESTRA_ENERGIA = 12
+RECOLECTAR_MUESTRA_PROVISIONES = 2
+REALIZAR_OBSERVACION_ENERGIA = 5
+PUNTOS_ANALIZAR_TERRENO = 10
+PUNTOS_RECOLECTAR_MUESTRA = 20
+PUNTOS_REALIZAR_OBSERVACION = 8
 
 
 
@@ -31,6 +38,7 @@ def ejecutar_mision(numero):
 
     if opcion_destino < 1 or opcion_destino > len(DESTINOS):
         print("Opción de destino no válida. La misión no puede planificarse.")
+        return None
     else:
         destino = DESTINOS[opcion_destino - 1]
         nombre_destino = destino[0]
@@ -46,10 +54,16 @@ def ejecutar_mision(numero):
             print("=== VIAJE DE IDA ===")
             disponibles = viajar_al_destino(disponibles, dias_viaje, cantidad_tripulantes)
             mostrar_recursos(disponibles)
+            disponibles, puntos = explorar_destino(disponibles)
+            estado = evaluar_regreso(disponibles, dias_viaje, cantidad_tripulantes)
 
         else:
             print("Lanzamiento no autorizado. La misión debe ser revisada.")
- # i indice     
+            estado = "Lanzamiento no autorizado"
+            puntos = 0
+
+        return f"Misión {numero} | {nombre_mision} | {nombre_destino} | {estado} | Puntos: {puntos}"
+
 
 def mostrar_destinos():
 
@@ -60,7 +74,6 @@ def mostrar_destinos():
         print(f"{i + 1}. {destino[0]} ({destino[1]} días)")
 
 
-
 def leer_recursos():
     disponibles = []
 
@@ -69,7 +82,8 @@ def leer_recursos():
         disponibles.append(cantidad)
 
     return disponibles
-    
+
+
 def calcular_requeridos(dias_viaje, tripulantes):
 
     combustible_ida = dias_viaje * COMBUSTIBLE_REQUERIDO_DIARIO
@@ -82,7 +96,6 @@ def calcular_requeridos(dias_viaje, tripulantes):
     requeridos = [combustible_total_requerido, oxigeno_total_requerido, energia_total_requerida, provisiones_totales_requeridas]
 
     return requeridos
-
 
 
 def mostrar_resumen(nombre_mision,nombre_destino,dias_viaje,tripulantes,disponibles,requeridos):
@@ -100,6 +113,7 @@ def mostrar_resumen(nombre_mision,nombre_destino,dias_viaje,tripulantes,disponib
     if margen_combustible < 10:
      print("Advertencia: el margen de combustible es menor que 10.")
 
+
 def autorizar_lanzamiento(disponible,requerido):
 
     autorizar_lanzamiento = True
@@ -116,11 +130,21 @@ def calcular_consumo_diario(tripulantes):
     consumo = [COMBUSTIBLE_REQUERIDO_DIARIO,OXIGENO_REQUERIDO_DIARIO * tripulantes,ENERGIA_REQUERIDA_DIARIA,PROVISIONES_CONSUMO_DIARIO * tripulantes ]   
     return consumo 
 
+
+def recursos_alcanzan(recursos, consumo):
+    alcanzan = True
+    for i in range(len(RECURSOS)):
+        if recursos[i] < consumo[i]:
+            alcanzan = False
+    return alcanzan
+
+
 def viajar_al_destino(recursos, dias_viaje, tripulantes):
     consumo = calcular_consumo_diario(tripulantes)
     for i in range (len(RECURSOS)):
         recursos [i] = recursos [i] - consumo [i] * dias_viaje
     return recursos
+
 
 def mostrar_recursos(recursos):
     print("Recursos restantes:")
@@ -129,9 +153,53 @@ def mostrar_recursos(recursos):
         print(f" {nombre_recursos}: {recursos[i]}")
 
 
-# def simular_trayecto(dias_viaje, tripulantes, recursos):
-    
-   
-ejecutar_mision(1) 
+def explorar_destino(recursos):
+    print("Exploración científica pendiente.")
+    # TODO: integrar el menú del ejercicio 7, descontar recursos y sumar puntos.
+    puntos = 0
+    return recursos, puntos
 
-    
+
+def evaluar_regreso(recursos, dias_viaje, tripulantes):
+    # TODO: integrar el ejercicio 8 y devolver el desenlace de la tripulación.
+    estado = "Regreso pendiente de evaluar"
+    print(estado)
+    return estado
+
+
+def mostrar_historial(historial):
+    if not historial:
+        print("Todavía no hay misiones registradas.")
+    for resultado in historial:
+        print(resultado)
+
+
+def main():
+    historial = []
+    menu_activo = True
+
+    while menu_activo:
+        print("\n=== MISIÓN ÓRBITA ===")
+        print("1. Iniciar misión")
+        print("2. Mostrar historial")
+        print("3. Salir ")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            resultado = ejecutar_mision(len(historial) + 1)
+            if resultado is not None:
+                historial.append(resultado)
+
+        elif opcion == "2":
+            mostrar_historial(historial)
+
+        elif opcion == "3":
+            print("Fin del programa.")
+            menu_activo = False
+        else:
+            print("Opción no válida ")
+
+
+if __name__ == "__main__":
+    main()
